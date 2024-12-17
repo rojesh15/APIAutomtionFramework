@@ -8,6 +8,9 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+    #cron job always run on utc time
+  schedule:
+    - cron: 00 20 * * *
 
 jobs:
   build:
@@ -26,3 +29,11 @@ jobs:
         #Here we are giving command names and commands
     - name: Execute Test
       run: mvn clean test -Dsuite=suite -X
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.4.3
+
+      with:
+       name: Logs
+       path: logs/
+       
