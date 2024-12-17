@@ -1,0 +1,26 @@
+<Configuration status="WARN">
+	
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<!-- Here %d{HH:mm:ss.SSS} defines timestamp
+			[%t] defines thread name
+			%-5level define level like info,debug etc
+			%logger{36} define fully Qualified classname
+			%msg%n defines msg you wanna print and n for new line-->
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"></PatternLayout>
+			
+		</Console>
+		
+		<File name="File" fileName="logs/test.log">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"></PatternLayout>
+		</File>
+	</Appenders>
+	
+	<Loggers>
+		<Root level="info">
+			<AppenderRef ref="Console"/>
+			<AppenderRef ref="File"/>
+		</Root>
+	</Loggers>
+	
+</Configuration>
