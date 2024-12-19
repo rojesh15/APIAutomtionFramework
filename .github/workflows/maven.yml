@@ -16,7 +16,12 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    #Giving permision to read and write
+    permissions: 
+      contents: read
+      checks: write
+      issues: write
+      
     steps:
     - uses: actions/checkout@v4
     #Setup java 11 whic is similar to local
@@ -36,4 +41,13 @@ jobs:
       with:
        name: Logs
        path: logs/
+
+    #Giving junit report path here
+    - name: publish report
+      if: always()
+      uses: dorny/test-reporter@v1
+      with:
+         name: testNG results
+         path: target/surefire-reports/junitreports/TEST-*.xml
+         reporter: java-junit
        
